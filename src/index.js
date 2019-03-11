@@ -5,8 +5,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-require("./app/controllers/authController")(app); // Repassando o app para o authController
-require("./app/controllers/projectController")(app);
+require("./app/controllers")(app); // Repassando o app para as rotas
 
 app.listen(3000);

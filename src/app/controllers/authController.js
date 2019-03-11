@@ -2,8 +2,8 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/user.js"); // Model User
 const authConfig = require("../../config/auth.json");
+const User = require("../models/user.js"); // Model User
 
 const router = express.Router();
 
@@ -26,8 +26,6 @@ router.post("/register", async (req, res) => {
 
     const user = await User.create(req.body);
 
-    const token = generateToken({ id: user.id });
-
     return res.send({ user, token: generateToken({ id: user.id }) });
   } catch (err) {
     return res
@@ -47,8 +45,6 @@ router.post("/authenticate", async (req, res) => {
     return res.status(400).send({ Error: "Invalid password" });
 
   user.password = undefined;
-
-  const token = generateToken({ id: user.id });
 
   res.send({ user, token: generateToken({ id: user.id }) });
 });
