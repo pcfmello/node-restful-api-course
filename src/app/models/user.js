@@ -18,6 +18,16 @@ const UserSchema = new mongoose.Schema({
     required: true,
     select: false // Faz com que os dados de password não venham nas consultas dessa coleção
   },
+  passwordResetToken: {
+    // Guardará o token para resetar a senha
+    type: String,
+    select: false
+  },
+  passwordResetExpires: {
+    // Guarda a data de expiração do token
+    type: Date,
+    select: false
+  },
   createdAt: {
     type: Date,
     default: Date.now
